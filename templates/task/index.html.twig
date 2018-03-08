@@ -18,7 +18,7 @@
             <td>{{ task.description }}</td>
             <td>{{ task.createdAT | date }}</td>
             <td>{{ task.done ? 'Sí' : 'No' }}</td>
-            <td><a href="{{ path('task_edit',{ id: task.id }) }}" class="uibutton">Editar</a></td>
+            <td><a href="{{ path('task_edit',{ id: task.id }) }}" class="ui button">Editar</a></td>
         </tr>
         {% endfor %}
 

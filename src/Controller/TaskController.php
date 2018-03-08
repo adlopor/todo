@@ -17,6 +17,7 @@ class TaskController extends Controller
      */
     public function index(TaskRepository $repository)
     {
+        $user = $this
         $task = $repository->findAll();
 
         return $this->render('task/index.html.twig', [
@@ -64,7 +65,7 @@ class TaskController extends Controller
             $om->persist($task);
             $om->flush();
 
-            $this->addFlash('positive','Tarea creada: Eres un jaker!');
+            $this->addFlash('positive','Tarea editada: mis dieses!');
 
             return $this->redirectToRoute('homepage');
         }
