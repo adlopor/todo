@@ -17,8 +17,10 @@ class TaskController extends Controller
      */
     public function index(TaskRepository $repository)
     {
-        $user = $this
-        $task = $repository->findAll();
+        $user = $this->getUser();
+        $task = $repository->findBy([
+            'owner' => $user,
+        ]);
 
         return $this->render('task/index.html.twig', [
             'controller_name' => 'TaskController',
@@ -31,7 +33,10 @@ class TaskController extends Controller
     */
     public function new(Request $request)
     {
+        $user = $this->getUser();
         $task = new Task();
+        $task->setOwner($user);
+
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
@@ -56,6 +61,8 @@ class TaskController extends Controller
      */
     public function edit(Request $request, Task $task)
     {
+        $this->denyAccessUnlessGranted('EDIT',$task);
+
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
 
