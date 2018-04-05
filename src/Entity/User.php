@@ -31,6 +31,28 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(length=256)
      */
     private $password;
+
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->username;
+    }
+
+    public function getEmail()
+    {
+        return "{$this->username}gecoga98xxx@gmail.com";
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+
     /**
      * Returns the roles granted to the user.
      *
